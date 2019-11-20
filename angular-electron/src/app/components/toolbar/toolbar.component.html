@@ -1,0 +1,40 @@
+<!-- topHeaderSection -->
+
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <h1>Gloria</h1>
+      <span class="menu-spacer"></span>
+      <div>
+         <a mat-button [routerLink]="'/accounts'"> </a>
+        <a mat-button [routerLink]="'/create-account'"> Create Account </a>
+        <a mat-button [routerLink]="'/contacts'"> Contacts </a>
+        <a mat-button [routerLink]="'/create-contact'"> Create Contact </a>
+        <a mat-button [routerLink]="'/activities'"> Activities </a>
+        <a mat-button [routerLink]="'/create-activity'"> Create Activity </a> 
+  
+      </div>
+    </mat-toolbar-row>
+    <mat-toolbar-row>
+      <a class="navbar-brand" [routerLink]="['/']">
+        <img src="./assets/img/logo1.jpg" alt="Logo" style="width:60px;">
+        <p>Gloria School</p>
+      </a>
+      <a [routerLink]="['/add']" routerLinkActive="router-link-active" class="navbar-brand ml-auto">Add Student</a>
+      <a [routerLink]="['/view/student']" routerLinkActive="router-link-active" class="navbar-brand">View All</a>
+      <a [routerLink]="['/monthlyBill']" routerLinkActive="router-link-active" class="navbar-brand">Create Monthly
+        Bill</a>
+      <a [routerLink]="['/receipt']" routerLinkActive="router-link-active" class="navbar-brand">Receipt</a>
+      <a [routerLink]="['/cashBook']" routerLinkActive="router-link-active" class="navbar-brand">Cash Book</a>
+      <a [routerLink]="['/dashboard']" routerLinkActive="router-link-active" class="navbar-brand">Dashboard</a>
+      
+    </mat-toolbar-row>
+  
+    <mat-toolbar-row>
+        <span style="font-size: 12px;">Agents of Change</span>
+      </mat-toolbar-row>
+  </mat-toolbar>
+
+  

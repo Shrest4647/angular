@@ -1,0 +1,36 @@
+<div class="container">
+    <h3 style="align-content: center;">Bill No: <em>{{bill.id}}</em></h3>
+    <h6>Created On: {{bill.firstDate| date}}</h6>
+    <h6 *ngIf="bill.paid">Paid</h6>
+    <h6 *ngIf="!bill.paid">LastDate of Payment: {{bill.dueDate| date}}</h6>
+
+    <h6>Bill Issued for <a [routerLink]="['/view/'+ bill.studentId]" routerLinkActive="router-link-active" >{{bill.studentId}}</a></h6>
+    <div class="table table-responsive">
+        <table class="table-hover table-inverse">
+            <thead>
+                <tr>
+                    <th>Particular</th>
+                    <th>Amount(Rs)</th>
+                    <th>Remark</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let entry of bill.entries">
+                    <td>{{entry.particular}}</td>
+                    <td>{{entry.amount}}</td>
+                    <td>{{entry.remark}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>Total</td>
+                    <td>bill.total</td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <p class="text-info">Remarks: {{bill.remark}}</p>
+
+    <button class="btn btn-lg btn-warning" (click)="deleteBill()">Delete this Bill</button>
+</div>

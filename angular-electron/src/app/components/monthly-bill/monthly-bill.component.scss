@@ -1,0 +1,57 @@
+
+img#logo {
+    max-width: 70%;
+    height: auto;
+
+}
+
+.card {
+    border: 0;
+}
+
+.card-body {
+    padding: 0;
+}
+
+
+.single-block *{
+    font-size: 20px;
+}
+
+.single-block {
+    page-break-inside: avoid;
+}
+.space {
+    padding: 30px;
+}
+
+.breakImmediately {
+    page-break-after: always;
+}
+
+@page {
+    size: A4;
+    size: portrait;
+}
+
+@media print{
+
+    html,body{
+        height:297mm;
+        width:210mm;
+    }
+
+    .single-block{
+        height: 49%;
+        width: auto;
+    }
+
+      .no-print {
+        display: none;
+    }
+
+    hr {
+        margin-bottom: 2rem;
+    }
+    
+}

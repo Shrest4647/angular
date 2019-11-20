@@ -1,0 +1,150 @@
+<section id="controlSection">
+  <div class="container no-print">
+    <div class="card">
+      <div class="card-body">
+        <button class="btn btn-md">Toggle</button>
+      </div>
+      <div class="card-body">
+        <label for="month">Bill For the month of </label>
+        <select [(ngModel)]="monthName">
+          <option *ngFor="let month of year" [value]="month">{{month}}</option>
+        </select>
+        <br>
+        <input type="checkbox" name="examFee" id="checkBox" [(ngModel)]="examFee"> Add Exam Fee
+      </div>
+      <div class="card-body">
+        <label for="dueDate">**Last Payment date</label>
+        <input type="date" name="dueDate" [(ngModel)]="dueDate">
+      </div>
+      <div class="card-body">
+        <label for="choice">Grade</label>
+        <input type="text" name="choice" [(ngModel)]="choice">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        <button class="btn-success btn-md" (click)="generateBill()">Generate Bill</button>
+      </div>
+      <div class="col-4">
+        <button class="btn-md" (click)="saveBill()">
+          Save Bill
+        </button>
+        <button class="btn-md" (click)="printPage()">
+          Print this page
+        </button>
+        <button class="btn btn-md btn-primary" (click)="createNewBill()">New</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="previewSection" *ngIf="showBill">
+  <div id="billFormat" class="container print">
+    <div class="flex single-block" *ngFor="let student of showList; let index = index;">
+
+      <div class="row card" id="header">
+        <img src="./assets/img/schoolHeader.jpg" alt="Logo" class="img-fluid float-center">
+      </div>
+
+      <div class="row" id="info">
+        <div class="col-sm-8">
+          <table class="table-borderless table-sm">
+            <thead>
+              <tr style="align-content: center;">
+                <th colspan="2"></th>
+
+                <th>Bill No: </th>
+                <th>{{billList[index].id}}</th>
+                <th> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Student's Name:</td>
+                <td>{{student.firstName}} {{student.lastName}}</td>
+                <td style="width: 20%;"></td>
+                <td>Class:</td>
+                <td>{{student.grade}}</td>
+              </tr>
+              <tr>
+                <td>For Month Of:</td>
+                <td>{{monthName}}</td>
+
+                <td style="width: 20%;"></td>
+                <td>Last Payment Date:</td>
+                <td>{{dueDate | date}}</td>
+              </tr>
+            </tbody>
+
+          </table>
+        </div>
+      </div>
+      <div class="row card mt-0">
+        <div class="receipt-table table-responsive table-sm table-hover">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th>Serial No</th>
+                <th>Particular</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngIf="student.tutionFee">
+                <td>{{resetSerialNo()}}</td>
+                <td>Monthly Fee</td>
+                <td>{{student.tutionFee}}</td>
+              </tr>
+              <tr *ngIf="student.transportationFee">
+                <td>{{Serial()}}</td>
+                <td>Bus Fee</td>
+                <td>{{student.transportationFee}}</td>
+              </tr>
+              <tr *ngIf="student.computerFee">
+                <td>{{Serial()}}</td>
+                <td>Computer Fee</td>
+                <td>{{student.computerFee}}</td>
+              </tr>
+              <tr *ngIf="examFee">
+                <td>{{Serial()}}</td>
+                <td>Exam Fee</td>
+                <td>{{student.examFee}}</td>
+              </tr>
+              <tr *ngIf="student.lastdue">
+                <td>{{Serial()}}</td>
+                <td>Due Amount</td>
+                <td>{{student.lastdue}}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <th></th>
+              <th>
+                <div class="text-center">Total</div>
+              </th>
+              <th>
+                {{billList[index].total + student.lastdue | currency:'NPR':'symbol-narrow' }}
+              </th>
+            </tfoot>
+          </table>
+        </div>
+
+      </div>
+
+
+      <div id="Remarks">
+        <p class="mb-0"><em>Note: This bill must be presented at the time of payment</em></p>
+        <p class="mb-0"><em>**Important: Late Fee will be charged if failed to pay the bill within last payment
+            Date</em>
+        </p>
+        <hr>
+      </div>
+      <div *ngIf="index%2===0">
+        <p class="text-center">--  --  --  --  --  --  --  --  --  --  --  --  --  --  </p>
+      </div>
+
+    </div>
+    <div [ngClass]="index%2===0? '':'breakImmediately'"></div>
+
+  </div>
+
+</section>

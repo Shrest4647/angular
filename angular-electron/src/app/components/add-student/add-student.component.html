@@ -1,0 +1,82 @@
+<div class="container">
+  <div>
+    <div>
+      <p>Your ID: {{stu.id}}</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit(studentForm)" #studentForm='ngForm' class="was-validated">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" name="firstName" class="form-control form-control-sm" [(ngModel)]="stu.firstName" required
+          minlength="2">
+
+        <div class="valid-feedback">Valid</div>
+        <div class="invalid-feedback">Invalid Please fill out the field</div>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" name="lastName" class="form-control form-control-sm" [(ngModel)]="stu.lastName" required
+          minlength="2">
+
+        <div class="valid-feedback">Valid</div>
+        <div class="invalid-feedback">Invalid Please fill out the field</div>
+      </div>
+      <div class="form-group">
+        <mat-radio-group name="gender" aria-label="Gender" [(ngModel)]="stu.gender">
+          <mat-radio-button value="M">Boy</mat-radio-button>
+          <mat-radio-button value="F">Girl</mat-radio-button>
+        </mat-radio-group>
+
+      </div>
+      <div class="form-group">
+        <label for="grade">Grade</label>
+        <input type="text" name="grade" class="form-control form-control-sm" [(ngModel)]="stu.grade" required>
+
+        <div class="valid-feedback">Valid</div>
+        <div class="invalid-feedback">Invalid Please fill out the field</div>
+      </div>
+      <div class="form-group">
+        <label for="tutionFee">Tution Fee</label>
+        <input type="number" name="tutionFee" class="form-control form-control-sm" [(ngModel)]="stu.tutionFee" required>
+
+        <div class="valid-feedback">Valid</div>
+        <div class="invalid-feedback">Invalid Please fill out the field</div>
+      </div>
+      <div class="form-group">
+        <label for="tutionFee">Exam Fee</label>
+        <input type="number" name="examFee" class="form-control form-control-sm" [(ngModel)]="stu.examFee" required>
+
+        <div class="valid-feedback">Valid</div>
+        <div class="invalid-feedback">Invalid Please fill out the field</div>
+      </div>
+      <div class="form-group">
+        <label for="transportationFee">Transportation Fee</label>
+        <input type="number" name="transportationFee" class="form-control form-control-sm"
+          [(ngModel)]="stu.transportationFee" value="0">
+      </div>
+      <div class="form-group">
+        <label for="computerFee">ComputerFee</label>
+        <input type="number" name="computerFee" value="0" class="form-control form-control-sm" [(ngModel)]="stu.computerFee">
+      </div>
+      <div class="form-group">
+        <label for="DOB">Date Of Birth</label>
+        <input type="date" name="DOB" class="form-control form-control-sm" [(ngModel)]="stu.DOB">
+      </div>
+      <div class="form-group">
+        <label for="guardian">Guardian</label>
+        <input type="text" name="guardian" class="form-control form-control-sm" [(ngModel)]="stu.guardian">
+      </div>
+      <div class="form-group">
+        <label for="contact">Contact Number</label>
+        <input type="text" name="contact" class="form-control form-control-sm" [(ngModel)]="stu.contact">
+      </div>
+
+
+
+
+      <input type="submit" value="studentForm">
+    </form>
+  </div>
+</div>
+
+<app-readcsv></app-readcsv>

@@ -1,0 +1,102 @@
+<div class="container">
+  <section id="header">
+    <h3 class="text-center">Cash Book</h3>
+    <div class="align-items-right">
+      <p class="text-info">Available Cash: {{getTotalCash()}}</p>
+    </div>
+  </section>
+
+  <section id="addTransaction">
+    <button class="btn-md" (click)="toggleForm()">Add New Transaction</button>
+    <div id="form" *ngIf="showAddForm">
+      <label for="debit/credit"></label>
+      <select [(ngModel)]="newTransaction.type">
+        <option value="debit">Expense</option>
+        <option value="credit">Income</option>
+      </select>
+      <table class="table-responsive table-hover">
+        <thead class="thead-inverse">
+          <tr>
+            <th>Particular</th>
+            <th>Amount(Rs)</th>
+            <th>Remark</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let entry of newTransaction.entries">
+            <td><input type="text" [(ngModel)]="entry.particular"></td>
+            <td><input type="number" [(ngModel)]="entry.amount"></td>
+            <td><input type="text" [(ngModel)]="entry.remark"></td>
+          </tr>
+          <tr>
+            <td colspan="3"><button class="btn" (click)="addNewRow()">Add New Row</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="btn-md" (click)="addNewTransaction()">Add</button>
+    </div>
+  </section>
+
+  <section id="data">
+    <div class="card table table-responsive">
+      <table class="card-body table-striped table-hover">
+        <thead>
+          <tr>
+            <th colspan="5"><span class="text-center">CashBook Id: {{cashBook.name}}</span></th>
+          </tr>
+          <tr>
+            <th>S.N</th>
+            <th>Date</th>
+            <th>Particular</th>
+            <th>Debit(Rs)</th>
+            <th>Credit(Rs)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let receipt of cashBook.receipts; let index = index;">
+            <td>{{index+1}}</td>
+            <td>{{receipt.date | date}}</td>
+            <td><a (click)="toggleR(index)">Receipt {{receipt.id}}</a>
+              <table *ngIf="RTF[index]" class="table-sm">
+                <tr *ngFor="let item of receipt.entries">
+                  <td>{{item.particular}}</td>
+                  <td>{{item.amount}}</td>
+                </tr>
+              </table>
+            </td>
+            <td></td>
+            <td>{{receipt.total}}</td>
+          </tr>
+          <tr *ngFor="let transaction of cashBook.transactions; let index = index;">
+            <td>{{index+ 1 + cashBook.receipts.length}}</td>
+            <td>{{transaction.date | date}}</td>
+            <td><a (click)="toggleT(index)">Transaction {{transaction.id}}</a>
+              <table *ngIf="TTF[index]" class="table-sm">
+                <tr *ngFor="let item of transaction.entries">
+                  <td>{{item.particular}}</td>
+                  <td>{{item.amount}}</td>
+                </tr>
+              </table>
+
+            </td>
+            <td><span *ngIf="transaction.type === 'debit'"> {{transaction.total}}</span></td>
+            <td><span *ngIf="transaction.type === 'credit'"> {{transaction.total}}</span></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
+
+
+
+
+</div>

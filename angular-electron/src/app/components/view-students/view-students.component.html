@@ -1,0 +1,47 @@
+<div class="container">
+  <h5>Student Records -2076</h5>
+  <div class="alert alert-info" *ngIf="filterByText!='' || filterByGrade!=''">
+    <p>Showing results for <strong>
+        <span *ngIf="filterByText">--{{filterByText}} </span>
+        <span *ngIf="filterByGrade">--{{filterByGrade}} </span>
+      </strong>
+    </p>
+  </div>
+
+  <div class="receipt-table table-responsive table-hover table-striped">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Grade</th>
+          <th>Tution Fee</th>
+          <th>Transportation Fee</th>
+          <th>Computer Fee</th>
+          <th>Due</th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of allStudents">
+          <td>{{student.id}}</td>
+          <td>{{student.firstName}} {{student.lastName}}</td>
+          <td>{{student.grade}}</td>
+          <td>{{student.tutionFee}}</td>
+          <td>{{student.transportationFee}}</td>
+          <td>{{student.computerFee}}</td>
+          <td>{{student.lastdue}}</td>
+          <td>
+            <button routerLink="/view/{{student.id}}" routerLinkActive="router-link-active"
+              class="btn btn-sm">More
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+ 
+
+
+</div>

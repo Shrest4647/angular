@@ -1,0 +1,52 @@
+<div class="container" *ngIf="student">
+  <h5>
+    <p class="text-left">Student Id: {{student.id}}</p>
+    <p class="text-right">Total Due: {{student.lastdue}}</p>
+  </h5>
+
+  <h6>Student Name: <em>{{student.firstName}} {{student.lastName}}</em></h6>
+  <h6>Grade: {{student.grade}}</h6>
+  <h6>Date of birth: {{student.DOB}}</h6>
+  <h6>Gender : {{student.gender}}</h6>
+
+  <div class="fontsize-14">
+    <h6>Fee Structure</h6>
+    <table class="table-hover table-responsive">
+      <thead>
+        <tr>
+          <th>Particular</th>
+          <th>Amount</th>
+        </tr>
+
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tution Fee</td>
+          <td>{{student.tutionFee}}</td>
+        </tr>
+        <tr>
+          <td>Transportation Fee</td>
+          <td>{{student.transportationFee}}</td>
+        </tr>
+        <tr>
+          <td>Computer Fee</td>
+          <td>{{student.computerFee}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="card">
+      <h5>Issued Bills</h5>
+      <div *ngFor="let billid of student.issuedBillId">
+        <a [routerLink]="['/view/bill/'+billid]" routerLinkActive="router-link-active">{{billid}}</a>
+      </div>
+
+    </div>
+
+    <button class="btn btn-warning" (click)="removeStudent()">Delete</button>
+
+
+
+  </div>
+
+</div>

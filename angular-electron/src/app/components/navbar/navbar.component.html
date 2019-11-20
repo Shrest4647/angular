@@ -1,0 +1,18 @@
+<nav class="navbar navbar-dark bg-primary mb-4">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/']">
+      <img src="./assets/img/logo1.jpg" alt="Logo" style="width:50px;">
+      <p>Gloria School</p>
+    </a>
+    <a [routerLink]="['/add']" routerLinkActive="router-link-active" class="navbar-brand ml-auto">Add Student</a>
+    <a [routerLink]="['/view/student']" routerLinkActive="router-link-active" class="navbar-brand">View All</a>
+    <a [routerLink]="['/monthlyBill']" routerLinkActive="router-link-active" class="navbar-brand">Create Monthly
+      Bill</a>
+    <a [routerLink]="['/receipt']" routerLinkActive="router-link-active" class="navbar-brand">Receipt</a>
+    <a [routerLink]="['/cashBook']" routerLinkActive="router-link-active" class="navbar-brand">Cash Book</a>
+    <a routerLink ="/login"> Login</a>
+    
+
+
+  </div>
+</nav>
